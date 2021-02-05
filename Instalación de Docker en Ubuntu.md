@@ -12,7 +12,7 @@ Docker le proporciona una manera estándar de ejecutar su código. Docker es un 
 
 > Una máquina virtual es un software que permite emular el funcionamiento de un ordenador dentro de otro ordenador.
 >
-> Una máquina virtual es un software que crea una capa independiente donde se emula el funcionamiento de un ordenador real con todos los componentes de hardware que necesita para funcionar (disco duro, memoria RAM, tarjetas de red, tarjeta gráfica, etc.) y que puede ejecutar cualquier sistema operativo o programa, tal y como lo haría un ordenador real. Toda esta emulación se encapsula en una serie de archivos que actúan como contendor desde el que se ejecuta la máquina virtual en una ventana de tu ordenador como si de un programa más se tratara y sin que nada de lo que suceda en el interior de esa ventana afecte al ordenador que la ejecuta.
+> Una máquina virtual es un software que crea una capa independiente donde se emula el funcionamiento de un ordenador real con todos los componentes de hardware que necesita para funcionar (disco duro, memoria RAM, tarjetas de red, tarjeta gráfica, etc.) y que puede ejecutar cualquier sistema operativo o programa, tal y como lo haría un ordenador real. Toda esta emulación se encapsula en una serie de archivos que actúan como contenedor desde el que se ejecuta la máquina virtual en una ventana de tu ordenador como si de un programa más se tratara y sin que nada de lo que suceda en el interior de esa ventana afecte al ordenador que la ejecuta.
 
 ![monolith_2-VM-vs-Containers](https://d1.awsstatic.com/Developer%20Marketing/containers/monolith_2-VM-vs-Containers.78f841efba175556d82f64d1779eb8b725de398d.png)
 
@@ -24,13 +24,13 @@ Un contenedor es una pequeña instancia, que debe ser:
 
 - Ejecutable
 - Ligera
-- Autonoma
+- Autónoma
 
-Esta instancia tiene su propio sistema operativo y sus binarios/librerias, para ejecutar su aplicación.
+Esta instancia tiene su propio sistema operativo y sus binarios/librerías, para ejecutar su aplicación.
 
 ![img](https://miro.medium.com/max/586/0*VaYQn55Tc3xy8-lN)
 
-El objetivo es que cada contenedor se ejecute para actividades especificas. Cada contenedor funciona sobre la **“infrastructura”** de su equipo host, que puede tener otro Sistema Operativo, lo que hace a los contenedores **“independientes”** de la plataforma de su host.
+El objetivo es que cada contenedor se ejecute para actividades especificas. Cada contenedor funciona sobre la **“infraestructura”** de su equipo host, que puede tener otro Sistema Operativo, lo que hace a los contenedores **“independientes”** de la plataforma de su host.
 
 
 
@@ -110,7 +110,7 @@ sudo pip3 -v install docker-compose
 
 ## Creación de Dockerfile
 
-Docker construye “imagenes” al leer, *línea por línea*, las instrucciones desde un **“Dockerfile”**, que es un archivo de texto, que tiene todos los comandos en orden y que son necesarios para construir esta imagen. Este archivo debe cumplir cierto formato para declarar las instrucciones.
+Docker construye “imágenes” al leer, *línea por línea*, las instrucciones desde un **“Dockerfile”**, que es un archivo de texto, que tiene todos los comandos en orden y que son necesarios para construir esta imagen. Este archivo debe cumplir cierto formato para declarar las instrucciones.
 
 > *La imagen de Docker, consiste en la lectura de cada una de las capas que se presentan como instrucciones en un Dockerfile.*
 
@@ -127,10 +127,10 @@ CMD /usr/sbin/apache2ctl -D FOREGROUND
 ENTRYPOINT echo "Eres un maestro!!! esta es tu nueva imagen de Ubuntu con Apache ;)"
 ```
 
-En la sintaxis del archivo de docker, las instrucciones van en **mayusculas**. Cada instrucción crea una **“capa”**. 
+En la sintaxis del archivo de docker, las instrucciones van en **mayúsculas**. Cada instrucción crea una **“capa”**. 
 
-- [ ] **FROM [imagen]:[version]** crea una capa desde un repositorio de imagenes llamado [DockerHUB](https://hub.docker.com/)*. En este caso estamos usando una imagen con* Ubuntu y su versión en especifico 18.04
-- [ ] **RUN [comando de ejecución + parametros]** ejecuta un comando durante el **proceso de creación del contenedor**, en este caso hace el update del sistema con “apt-get update” y luego concatena una segunda instruccion con **“&&”** y ejecuta **“apt-get install nginx -y”** para instalar el servidor web “nginx”
+- [ ] **FROM [imagen]:[version]** crea una capa desde un repositorio de imágenes llamado [DockerHUB](https://hub.docker.com/)*. En este caso estamos usando una imagen con* Ubuntu y su versión en especifico 18.04
+- [ ] **RUN [comando de ejecución + parámetros]** ejecuta un comando durante el **proceso de creación del contenedor**, en este caso hace el update del sistema con “apt-get update” y luego concatena una segunda instrucción con **“&&”** y ejecuta **“apt-get install nginx -y”** para instalar el servidor web “nginx”
 - [ ] **CMD** Es una instrucción para que un comando se ejecute **dentro del contenedor**, justo después de que el contenedor sea ejecutado.
 - [ ] **ENTRYPOINT o CMD [comando]** Es una instrucción para que un comando se ejecute **dentro del contenedor**, justo después de que el contenedor sea ejecutado
 
@@ -156,13 +156,13 @@ docker build -t apache2:20.04 .
 docker run -ti -d --name apache2-svr -p 88:80 apache2:20.04
 ```
 
-- [x] **-d** (detached) para que la terminal no quede capturada por la ejecución del contenedor. Si no se especifica -d la terminal queda inabilitada hasta que se envie un comando de terminar como Ctrl-C.
+- [x] **-d** (detached) para que la terminal no quede capturada por la ejecución del contenedor. Si no se especifica -d la terminal queda inhabilitada hasta que se envié un comando de terminar como Ctrl-C.
 - [ ] **-ti** (terminal interactiva) permite ver las respuesta de los comandos que se enviaron al contenedor. 
-- [ ] **--name** para asignar nombre del contenedor, si no se asigan un nombre, docker coloca un nombre de manera aleatoria. 
-- [ ] **-p** ahora nuestro host (nuestro equipo) estará escuchando en todos los interfaces *(0.0.0.0)* en e puerto **88**, y el tráfico será redirigido al puerto 80 dentro del contendor.
-- [ ] **<nombre-de-imagen>:<tag>** desde que imagen se ejecutará el contendor.
+- [ ] **--name** para asignar nombre del contenedor, si no se asigna un nombre, docker coloca un nombre de manera aleatoria. 
+- [ ] **-p** ahora nuestro host (nuestro equipo) estará escuchando en todos los interfaces *(0.0.0.0)* en e puerto **88**, y el tráfico será redirigido al puerto 80 dentro del contenedor.
+- [ ] **<nombre-de-imagen>:<tag>** desde que imagen se ejecutará el contenedor.
 
->  *la opcion [-p] se puede utilizar múltiples veces. Esto es útil si el contenedor utiliza multiples puertos.*
+>  *la opcion [-p] se puede utilizar múltiples veces. Esto es útil si el contenedor utiliza múltiples puertos.*
 
 
 

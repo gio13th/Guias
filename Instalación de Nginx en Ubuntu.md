@@ -110,7 +110,7 @@ Crear una pagina index.html
 vim /var/www/$example.com/html/index.html
 ```
 
-Para que Nginx lproporcione servicios a este contenido, se debe crear un bloque del servidor usando las directivas correctas.
+Para que Nginx proporcione servicios a este contenido, se debe crear un bloque del servidor usando las directivas correctas.
 
 ```bash
 sudo nano /etc/nginx/sites-available/$example.com

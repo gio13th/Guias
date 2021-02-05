@@ -65,7 +65,7 @@ http_access allow internal
 ...
 ```
 
-> Internal; el nombre puede variar, por ejemplo tambien se puede renombrar como localnet 
+> Internal; el nombre puede variar, por ejemplo también se puede renombrar como localnet 
 >
 > acl **localnet** src 19.168.56.0/24
 >

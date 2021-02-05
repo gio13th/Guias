@@ -38,7 +38,7 @@ sudo vim /etc/wpa_supplicant/wpa_supplicant.conf
 
 ## Actualización && Configuración del  Sistema
 
-Configuración basica del sistema
+Configuración básica del sistema
 
 ```bash
 sudo raspi-config
